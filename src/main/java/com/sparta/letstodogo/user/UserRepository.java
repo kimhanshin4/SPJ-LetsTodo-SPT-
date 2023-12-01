@@ -1,4 +1,4 @@
-package com.sparta.letstodogo;
+package com.sparta.letstodogo.user;
 
 import java.util.*;
 import org.springframework.data.jpa.repository.*;
