@@ -46,7 +46,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                     username); //이제 Authentication 생성 가능
                 // -> authentication의 principal 에 담고
                 Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails,
-                    null); //credential 신임장
+                    null, userDetails.getAuthorities()); //credential 신임장
                 // -> securityContent 에 담고
                 context.setAuthentication(authentication);
                 // -> SecurityContextHolder 에 담고
@@ -60,6 +60,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                 response.setContentType("application/json; charset=UTF-8"); //body가 깨지지 않도록
                 response.getWriter().write(objectMapper.writeValueAsString(
                     commonResponseDto)); //객체 그대로 문자열로 넣을 수 없기 때문에 ObjectMapper 사용 => 응답 body가 Json형태 문자열로 들어감
+                return;
             }
         }
         //login처리 후 다음 filter로 방향제시

@@ -1,6 +1,8 @@
 package com.sparta.letstodogo.user;
 
+import com.sparta.letstodogo.todo.*;
 import jakarta.persistence.*;
+import java.util.*;
 import lombok.*;
 
 @Entity
@@ -19,4 +21,11 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE) //삭제될 때 Todo도 삭제되도록
+//    private List<Todo> todoList;
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 }
