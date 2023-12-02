@@ -1,6 +1,7 @@
 package com.sparta.letstodogo.todo;
 
 import com.sparta.letstodogo.user.*;
+import com.sparta.letstodogo.util.*;
 import jakarta.persistence.*;
 import java.time.*;
 import lombok.*;
@@ -11,7 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "Todo")
-public class Todo {
+public class Todo extends BaseTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,8 +21,8 @@ public class Todo {
     private String title;
     @Column
     private String content;
-    @Column
-    private LocalDateTime createDate;
+//    @Column
+//    private LocalDateTime createDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -30,7 +31,7 @@ public class Todo {
     public Todo(TodoRequestDto requestDto) {
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
-        this.createDate = LocalDateTime.now();
+//        this.createDate = LocalDateTime.now();
     }
 
     public void setUser(User user) {

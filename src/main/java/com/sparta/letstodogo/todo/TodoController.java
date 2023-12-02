@@ -2,6 +2,7 @@ package com.sparta.letstodogo.todo;
 
 import com.sparta.letstodogo.*;
 import com.sparta.letstodogo.user.*;
+import java.util.*;
 import lombok.*;
 import org.springframework.http.*;
 import org.springframework.security.core.annotation.*;
@@ -34,7 +35,10 @@ public class TodoController {
     }
 
     @GetMapping
-    public ResponseEntity<Void> getTodoList() {
-        return ResponseEntity.ok().build();
+    public ResponseEntity<List<TodoListResponseDto>> getTodoList() {
+        List<TodoListResponseDto> response = new ArrayList<>();
+        Map<UserDto, List<TodoResponseDto>> responseDtoMap = todoService.getTodoMap();
+        responseDtoMap.forEach((key, value) -> response.add(new TodoListResponseDto(key, value)));
+        return ResponseEntity.ok().body(response);
     }
 }
