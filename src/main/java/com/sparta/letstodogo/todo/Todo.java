@@ -21,8 +21,7 @@ public class Todo extends BaseTime {
     private String title;
     @Column
     private String content;
-//    @Column
-//    private LocalDateTime createDate;
+
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -31,11 +30,19 @@ public class Todo extends BaseTime {
     public Todo(TodoRequestDto requestDto) {
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
-//        this.createDate = LocalDateTime.now();
     }
 
+    //연관관계 메서드
     public void setUser(User user) {
         this.user = user;
-//        user.getTodoList().add(this);
+    }
+
+    //서비스 메서드
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

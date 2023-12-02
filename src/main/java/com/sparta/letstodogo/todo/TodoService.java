@@ -2,9 +2,11 @@ package com.sparta.letstodogo.todo;
 
 import com.sparta.letstodogo.user.*;
 import java.util.*;
+import java.util.concurrent.*;
 import lombok.*;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.*;
+import org.springframework.transaction.annotation.*;
 
 @Service
 @RequiredArgsConstructor
@@ -45,5 +47,17 @@ public class TodoService {
             }
         });
         return userTodoMap;
+    }
+
+    @Transactional
+    public TodoResponseDto modifyTodo(Long todoId, TodoRequestDto requestDto, User user) {
+        Todo todo = todoRepository.findById(todoId)
+            .orElseThrow(() -> new IllegalArgumentException("해당 할 일이 존재하지 않다구요!"));
+        if (!user.getId().equals(todo.getUser().getId())) {
+            throw new RejectedExecutionException("작성자가 아니면 수정 할 수 없어요!");
+        }
+        todo.setTitle(requestDto.getTitle());
+        todo.setContent(requestDto.getContent());
+        return new TodoResponseDto(todo);
     }
 }
