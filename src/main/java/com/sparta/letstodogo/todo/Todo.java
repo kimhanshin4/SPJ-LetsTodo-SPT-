@@ -21,6 +21,8 @@ public class Todo extends BaseTime {
     private String title;
     @Column
     private String content;
+    @Column
+    private boolean isCompleted;
 
 
     @ManyToOne
@@ -30,6 +32,7 @@ public class Todo extends BaseTime {
     public Todo(TodoRequestDto requestDto) {
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
+        this.isCompleted = false;
     }
 
     //연관관계 메서드
@@ -44,5 +47,17 @@ public class Todo extends BaseTime {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public void completed() {
+        this.isCompleted = true;
+    }
+
+    public void notCompleted() {
+        this.isCompleted = false;
+    }
+
+    public void toggleCompleted() {
+        isCompleted = !isCompleted;
     }
 }

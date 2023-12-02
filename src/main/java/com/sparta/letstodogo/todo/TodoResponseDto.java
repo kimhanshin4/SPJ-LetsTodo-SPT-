@@ -15,6 +15,7 @@ public class TodoResponseDto extends CommonResponseDto {
     private UserDto username;
     private String title;
     private String content;
+    private boolean isComplete;
     private LocalDateTime createDate;
 
     public TodoResponseDto(Todo todo) {
@@ -22,6 +23,7 @@ public class TodoResponseDto extends CommonResponseDto {
         this.username = new UserDto(todo.getUser().getUsername());
         this.title = todo.getTitle();
         this.content = todo.getContent();
+        this.isComplete = todo.isCompleted();
         this.createDate = todo.getCreateDate();
     }
 

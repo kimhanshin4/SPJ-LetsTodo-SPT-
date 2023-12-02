@@ -57,4 +57,17 @@ public class TodoController {
                 .body(new CommonResponseDto(e.getMessage(), HttpStatus.BAD_REQUEST.value()));
         }
     }
+
+    @PatchMapping("/{todoId}/complete")
+    public ResponseEntity<CommonResponseDto> completeTodo(@PathVariable Long todoId,
+        @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        try {
+            TodoResponseDto responseDto = todoService.toggleTodo(todoId,
+                userDetails.getUser());
+            return ResponseEntity.ok().body(responseDto);
+        } catch (RejectedExecutionException | IllegalArgumentException e) {
+            return ResponseEntity.badRequest()
+                .body(new CommonResponseDto(e.getMessage(), HttpStatus.BAD_REQUEST.value()));
+        }
+    }
 }
