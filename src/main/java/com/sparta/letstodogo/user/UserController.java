@@ -5,6 +5,7 @@ import com.sparta.letstodogo.util.*;
 import jakarta.servlet.http.*;
 import jakarta.validation.*;
 import lombok.*;
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,6 @@ public class UserController {
     public ResponseEntity<CommonResponseDto> signup(@Valid @RequestBody UserRequestDto requestDto) {
         try {
             userService.signup(requestDto);
-
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest()
                 .body(new CommonResponseDto("이미 등록된 사용자 이름이에요!", HttpStatus.BAD_REQUEST.value()));

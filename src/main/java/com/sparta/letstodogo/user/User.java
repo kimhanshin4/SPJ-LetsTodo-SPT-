@@ -28,4 +28,8 @@ public class User {
         this.username = username;
         this.password = password;
     }
+
+    public static User createTestUser(String username, String password) {
+        return new User(username, password);
+    }
 }
