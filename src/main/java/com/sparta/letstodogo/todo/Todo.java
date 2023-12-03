@@ -35,6 +35,14 @@ public class Todo extends BaseTime {
         this.isCompleted = false;
     }
 
+
+    public Todo(String title, String content, boolean isCompleted, User user) {
+        this.title = title;
+        this.content = content;
+        this.isCompleted = false;
+        this.user = user;
+    }
+
     //연관관계 메서드
     public void setUser(User user) {
         this.user = user;

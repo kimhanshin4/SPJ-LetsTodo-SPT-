@@ -44,7 +44,7 @@ public class TodoController {
     }
 
     @PatchMapping("/{todoId}")
-    public ResponseEntity<CommonResponseDto> modifyTodo(@PathVariable Long todoId,
+    public ResponseEntity<CommonResponseDto> modifyTodo(@PathVariable(name = "todoId") Long todoId,
         @RequestBody TodoRequestDto requestDto,
         @AuthenticationPrincipal
         UserDetailsImpl userDetails) {

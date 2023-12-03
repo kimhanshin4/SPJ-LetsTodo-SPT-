@@ -50,10 +50,10 @@ class UserControllerTest {
     private ObjectMapper objectMapper;
 
     @MockBean
-    UserService userService;
+    JwtUtil jwtUtil;
 
     @MockBean
-    JwtUtil jwtUtil;
+    UserService userService;
 
     @BeforeEach
     public void setup() {

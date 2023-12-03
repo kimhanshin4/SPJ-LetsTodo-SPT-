@@ -2,6 +2,7 @@ package com.sparta.letstodogo.security;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.mock.web.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -19,6 +20,10 @@ public class MockSpringSecurityFilter implements Filter {
         SecurityContextHolder.getContext()
             .setAuthentication((Authentication) ((HttpServletRequest) req).getUserPrincipal());
         chain.doFilter(req, res);
+    }
+
+
+    public void getFilters(MockHttpServletRequest mockHttpServletRequest) {
     }
 
     @Override

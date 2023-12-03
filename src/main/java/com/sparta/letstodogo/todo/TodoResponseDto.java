@@ -12,7 +12,7 @@ import lombok.*;
 public class TodoResponseDto extends CommonResponseDto {
 
     private Long id;
-    private UserDto username;
+    private String username;
     private String title;
     private String content;
     private boolean isComplete;
@@ -20,7 +20,7 @@ public class TodoResponseDto extends CommonResponseDto {
 
     public TodoResponseDto(Todo todo) {
         this.id = todo.getId();
-        this.username = new UserDto(todo.getUser().getUsername());
+        this.username = todo.getUser().getUsername();
         this.title = todo.getTitle();
         this.content = todo.getContent();
         this.isComplete = todo.isCompleted();
@@ -37,7 +37,7 @@ public class TodoResponseDto extends CommonResponseDto {
         return TodoResponseDto.builder()
             .id(todo.getId())
             .title(todo.getTitle())
-            .username(new UserDto(todo.getUser().getUsername()))
+            .username(todo.getUser().getUsername())
             .content(todo.getContent())
             .createDate(todo.getCreateDate())
             .build();

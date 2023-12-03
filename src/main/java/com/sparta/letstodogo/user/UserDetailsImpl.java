@@ -3,6 +3,7 @@ package com.sparta.letstodogo.user;
 import java.util.*;
 import lombok.*;
 import org.springframework.security.core.*;
+import org.springframework.security.core.authority.*;
 import org.springframework.security.core.userdetails.*;
 
 @Getter
@@ -13,7 +14,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override
