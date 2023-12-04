@@ -1,4 +1,4 @@
-package com.sparta.letstodogo.domain.todo.entity;
+package com.sparta.letstodogo.domain.todo.controller;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -19,7 +19,6 @@ import com.sparta.letstodogo.util.*;
 import java.nio.charset.*;
 import java.security.*;
 import java.util.*;
-import java.util.stream.*;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.boot.test.autoconfigure.web.servlet.*;
@@ -28,7 +27,6 @@ import org.springframework.context.annotation.*;
 import org.springframework.data.jpa.mapping.*;
 import org.springframework.http.*;
 import org.springframework.security.authentication.*;
-import org.springframework.test.util.*;
 import org.springframework.test.web.servlet.*;
 import org.springframework.test.web.servlet.setup.*;
 import org.springframework.web.context.*;
@@ -79,7 +77,7 @@ class TodoControllerTest {
             .alwaysDo(print())
             .build();
         //Test 유저 생성
-        User user1 = User.createTestUser("Elsa", "DoYouWannaBuildASnowman");
+        User user1 = User.createUser("Elsa", "DoYouWannaBuildASnowman");
         UserDetailsImpl testUserDetails = new UserDetailsImpl(user1);
         mockPrincipal = new UsernamePasswordAuthenticationToken(testUserDetails, "",
             testUserDetails.getAuthorities());
@@ -90,7 +88,7 @@ class TodoControllerTest {
     @DisplayName("할일 생성 Test")
     void createTodo() throws Exception {
         //Given
-        User user1 = User.createTestUser("Elsa", "DoYouWannaBuildASnowman");
+        User user1 = User.createUser("Elsa", "DoYouWannaBuildASnowman");
         UserDto userDto = new UserDto(user1.getUsername());
         TodoRequestDto requestDto = new TodoRequestDto("열심열심", "드가자!스파르탄!");
         Todo todo = Todo.builder()
@@ -121,7 +119,7 @@ class TodoControllerTest {
     @Test
     @DisplayName("할일 수정 Test")
     void modifyTodo() throws Exception {
-        User user1 = User.createTestUser("Elsa", "DoYouWannaBuildASnowman");
+        User user1 = User.createUser("Elsa", "DoYouWannaBuildASnowman");
         UserDetailsImpl testUserDetails = new UserDetailsImpl(user1);
         mockPrincipal = new UsernamePasswordAuthenticationToken(testUserDetails, "",
             testUserDetails.getAuthorities());
@@ -155,7 +153,7 @@ class TodoControllerTest {
     void getTodo() throws Exception {
         //Given
         Long todoId = 1L;
-        User user1 = User.createTestUser("Elsa", "DoYouWannaBuildASnowman");
+        User user1 = User.createUser("Elsa", "DoYouWannaBuildASnowman");
         Todo todo1 = new Todo("title1", "content1", true, user1);
 
         given(todoRepository.findById(todoId)).willReturn(Optional.of(todo1));

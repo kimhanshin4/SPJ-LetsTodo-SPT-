@@ -26,7 +26,7 @@ class TodoServiceTest {
         //Given
         String username = "SamPorter";
         String password = "ReadyToDeliverAPackage";
-        User user = User.createTestUser(username, password);
+        User user = User.createUser(username, password);
 
         String title = "뭐죠?";
         String content = "아주 두근세근하죠?";
@@ -93,7 +93,7 @@ class TodoServiceTest {
         //Given
         String username = "SamPorter";
         String password = "ReadyToDeliverAPackage";
-        User user = User.createTestUser(username, password);
+        User user = User.createUser(username, password);
 
         Long todoId = 1L;
         String title = "드가자!";

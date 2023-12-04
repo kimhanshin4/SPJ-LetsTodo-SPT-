@@ -1,8 +1,6 @@
 package com.sparta.letstodogo.user;
 
-import com.sparta.letstodogo.todo.*;
 import jakarta.persistence.*;
-import java.util.*;
 import lombok.*;
 
 @Entity
@@ -29,7 +27,7 @@ public class User {
         this.password = password;
     }
 
-    public static User createTestUser(String username, String password) {
+    public static User createUser(String username, String password) {
         return new User(username, password);
     }
 }

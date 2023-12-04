@@ -1,6 +1,5 @@
-package com.sparta.letstodogo.domain.user.entity;
+package com.sparta.letstodogo.domain.user.controller;
 
-import static org.mockito.BDDMockito.*;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -9,14 +8,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.fasterxml.jackson.databind.*;
 import com.sparta.letstodogo.config.*;
 import com.sparta.letstodogo.security.*;
-import com.sparta.letstodogo.todo.*;
 import com.sparta.letstodogo.user.*;
 import com.sparta.letstodogo.util.*;
 import java.nio.charset.*;
 import java.security.*;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.*;
-import org.springframework.boot.autoconfigure.security.oauth2.resource.*;
 import org.springframework.boot.test.autoconfigure.web.servlet.*;
 import org.springframework.boot.test.mock.mockito.*;
 import org.springframework.context.annotation.*;
@@ -93,7 +90,7 @@ class UserControllerTest {
 
         String jsonString = objectMapper.writeValueAsString(userRequestDto);
 
-        User testUser = User.createTestUser(username, password);
+        User testUser = User.createUser(username, password);
         UserDetailsImpl testUserDetails = new UserDetailsImpl(testUser);
         mockPrincipal = new UsernamePasswordAuthenticationToken(testUserDetails, "",
             testUserDetails.getAuthorities());
