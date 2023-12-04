@@ -1,4 +1,4 @@
-package com.sparta.letstodogo.user;
+package com.sparta.letstodogo.domain.user.entity;
 
 import static org.mockito.BDDMockito.*;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*;
@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.*;
 import com.sparta.letstodogo.config.*;
 import com.sparta.letstodogo.security.*;
 import com.sparta.letstodogo.todo.*;
+import com.sparta.letstodogo.user.*;
 import com.sparta.letstodogo.util.*;
 import java.nio.charset.*;
 import java.security.*;
@@ -80,7 +81,6 @@ class UserControllerTest {
                 .contentType(new MediaType(MediaType.APPLICATION_JSON, StandardCharsets.UTF_8))
                 .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isCreated());
-        //status(HttpStatus.CREATED.value())
     }
 
     @Test

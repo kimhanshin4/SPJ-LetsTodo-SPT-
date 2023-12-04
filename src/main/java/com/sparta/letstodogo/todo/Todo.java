@@ -57,14 +57,6 @@ public class Todo extends BaseTime {
         this.content = content;
     }
 
-    public void completed() {
-        this.isCompleted = true;
-    }
-
-    public void notCompleted() {
-        this.isCompleted = false;
-    }
-
     public void toggleCompleted() {
         isCompleted = !isCompleted;
     }

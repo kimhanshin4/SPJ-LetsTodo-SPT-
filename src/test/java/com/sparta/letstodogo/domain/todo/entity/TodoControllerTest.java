@@ -1,4 +1,4 @@
-package com.sparta.letstodogo.todo;
+package com.sparta.letstodogo.domain.todo.entity;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -13,6 +13,7 @@ import static org.mockito.BDDMockito.*;
 import com.fasterxml.jackson.databind.*;
 import com.sparta.letstodogo.config.*;
 import com.sparta.letstodogo.security.*;
+import com.sparta.letstodogo.todo.*;
 import com.sparta.letstodogo.user.*;
 import com.sparta.letstodogo.util.*;
 import java.nio.charset.*;
@@ -32,7 +33,7 @@ import org.springframework.test.web.servlet.*;
 import org.springframework.test.web.servlet.setup.*;
 import org.springframework.web.context.*;
 
-@DisplayName("할일 Controller Test")
+@DisplayName("할일 @Controller Test")
 @MockBean(JpaMetamodelMappingContext.class)
 @WebMvcTest(
     controllers = {TodoController.class},
@@ -79,14 +80,6 @@ class TodoControllerTest {
             .build();
         //Test 유저 생성
         User user1 = User.createTestUser("Elsa", "DoYouWannaBuildASnowman");
-        User user2 = User.createTestUser("SamPorter", "ReadyToDeliverAPackage");
-        //Test 할일 생성
-        Todo todo1 = new Todo("title1", "content1", true, user1);
-        Todo todo2 = new Todo("title2", "content3", false, user1);
-        Todo todo3 = new Todo("title3", "content3", true, user2);
-        List<Todo> todoList = new ArrayList<>(List.of(todo1, todo2, todo3));
-//        todoList.sort(Comparator.comparing(BaseTime::getCreateDate).reversed());
-        given(todoRepository.findAll()).willReturn(List.of(todo1, todo2, todo3));
         UserDetailsImpl testUserDetails = new UserDetailsImpl(user1);
         mockPrincipal = new UsernamePasswordAuthenticationToken(testUserDetails, "",
             testUserDetails.getAuthorities());
