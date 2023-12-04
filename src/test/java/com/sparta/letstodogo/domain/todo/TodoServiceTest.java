@@ -1,4 +1,4 @@
-package com.sparta.letstodogo.domain.todo.service;
+package com.sparta.letstodogo.domain.todo;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.*;

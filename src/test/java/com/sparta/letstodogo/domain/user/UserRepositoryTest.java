@@ -1,4 +1,4 @@
-package com.sparta.letstodogo.domain.user.repository;
+package com.sparta.letstodogo.domain.user;
 
 import static org.assertj.core.api.Assertions.*;
 

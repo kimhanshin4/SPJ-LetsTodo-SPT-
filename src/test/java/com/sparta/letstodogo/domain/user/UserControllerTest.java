@@ -1,4 +1,4 @@
-package com.sparta.letstodogo.domain.user.controller;
+package com.sparta.letstodogo.domain.user;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;

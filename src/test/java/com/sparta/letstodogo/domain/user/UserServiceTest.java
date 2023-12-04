@@ -1,4 +1,4 @@
-package com.sparta.letstodogo.domain.user.service;
+package com.sparta.letstodogo.domain.user;
 
 import static org.mockito.BDDMockito.*;
 
