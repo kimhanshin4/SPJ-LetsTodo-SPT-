@@ -1,6 +1,5 @@
 package com.sparta.letstodogo.util;
 
-import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.*;
 import jakarta.annotation.*;
@@ -46,7 +45,7 @@ public class JwtUtil {
             Jwts.parserBuilder().setSigningKey(key).build()
                 .parseClaimsJws(token);//생성된 Key값을 Token에 넣어 줌
             return true;
-        } catch (SecurityException | MalformedJwtException | SignatureException e) {
+        } catch (SecurityException | MalformedJwtException e) {
             log.error("Invalid JWT signature, 유효하지 않는 JWT 서명 입니다.");
         } catch (ExpiredJwtException e) {
             log.error("Expired JWT token, 만료된 JWT token 입니다.");
@@ -67,11 +66,12 @@ public class JwtUtil {
         Date date = new Date();
         //토큰 만료시간 60분
         long TOKEN_TIME = 60 * 60 * 1000;
-        return BEARER_PREFIX + Jwts.builder()
-            .setSubject(username)
-            .setExpiration(new Date(date.getTime() + TOKEN_TIME))
-            .setIssuedAt(date)
-            .signWith(key, signatureAlgorithm)
-            .compact();
+        return BEARER_PREFIX +
+            Jwts.builder()
+                .setSubject(username)
+                .setExpiration(new Date(date.getTime() + TOKEN_TIME))
+                .setIssuedAt(date)
+                .signWith(key, signatureAlgorithm)
+                .compact();
     }
 }

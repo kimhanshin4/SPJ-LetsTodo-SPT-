@@ -10,8 +10,6 @@ import org.junit.jupiter.api.*;
 
 class UserRequestDtoTest implements CommonTest {
 
-//    private Validator validator;
-
     @DisplayName("사용자 요청 DTO 생성")
     @Nested
     class createUserRequestDto {
